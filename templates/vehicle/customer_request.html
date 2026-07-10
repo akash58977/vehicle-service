@@ -1,0 +1,66 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+
+  <div style="margin-bottom: 30px;">
+    <h2 style="font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 12px;">
+      <i class="fas fa-tools" style="color: var(--primary-color);"></i> My Service Requests
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin-top: 6px;">Manage and track your vehicle service requests</p>
+  </div>
+
+  <div class="row">
+    <div class="col-3 col-m-6 col-sm-6">
+      <a href="/customer-view-request" style="text-decoration: none; display: block;">
+        <div class="card" style="cursor: pointer; border-left: 4px solid #2563eb; text-align: center; padding: 30px 20px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #4f46e5); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="fas fa-eye" style="font-size: 22px; color: #fff;"></i>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Pending Requests</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin: 0;">View & cancel pending requests</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-3 col-m-6 col-sm-6">
+      <a href="/customer-add-request" style="text-decoration: none; display: block;">
+        <div class="card" style="cursor: pointer; border-left: 4px solid #10b981; text-align: center; padding: 30px 20px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="fas fa-plus-circle" style="font-size: 22px; color: #fff;"></i>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">New Request</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Submit a new service request</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-3 col-m-6 col-sm-6">
+      <a href="/customer-view-approved-request" style="text-decoration: none; display: block;">
+        <div class="card" style="cursor: pointer; border-left: 4px solid #f59e0b; text-align: center; padding: 30px 20px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="fas fa-check-circle" style="font-size: 22px; color: #fff;"></i>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Approved Requests</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Track repair progress</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-3 col-m-6 col-sm-6">
+      <a href="/customer-view-approved-request-invoice" style="text-decoration: none; display: block;">
+        <div class="card" style="cursor: pointer; border-left: 4px solid #ec4899; text-align: center; padding: 30px 20px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #db2777); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 22px; color: #fff;"></i>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Service Bills</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin: 0;">View approved invoices</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

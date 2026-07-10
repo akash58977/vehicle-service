@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+    <style>
+        body { font-family: Helvetica, sans-serif; font-size: 14px; color: #333; }
+        .header { text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 20px; }
+        .header h1 { color: #1e3a8a; font-size: 28px; margin: 0; }
+        .header p { color: #555; margin: 5px 0; }
+        .info-table { width: 100%; margin-bottom: 30px; }
+        .info-table td { width: 50%; vertical-align: top; }
+        .info-box { border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+        .info-box h3 { margin-top: 0; color: #1e3a8a; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .details-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .details-table th { background-color: #f4f7f6; color: #1e3a8a; border: 1px solid #ccc; padding: 10px; text-align: left; }
+        .details-table td { border: 1px solid #ccc; padding: 10px; }
+        .total-row td { font-weight: bold; font-size: 16px; background-color: #f4f7f6; }
+        .footer { text-align: center; color: #777; font-size: 12px; margin-top: 50px; border-top: 1px solid #ccc; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AutoCare AI</h1>
+        <p>Premium Vehicle Service & Management</p>
+        <p>123 Auto Avenue, Tech City, 100100</p>
+        <p>Email: support@autocare.ai | Phone: +1 800-555-0199</p>
+    </div>
+
+    <table class="info-table">
+        <tr>
+            <td>
+                <div class="info-box" style="margin-right: 10px;">
+                    <h3>Customer Details</h3>
+                    <p><strong>Name:</strong> {{ customer.get_name }}</p>
+                    <p><strong>Mobile:</strong> {{ customer.mobile }}</p>
+                    <p><strong>Address:</strong> {{ customer.address }}</p>
+                </div>
+            </td>
+            <td>
+                <div class="info-box" style="margin-left: 10px;">
+                    <h3>Invoice Information</h3>
+                    <p><strong>Invoice No:</strong> #INV-{{ enquiry.id }}</p>
+                    <p><strong>Date Issued:</strong> {{ today }}</p>
+                    <p><strong>Service Date:</strong> {{ enquiry.date }}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="details-table">
+        <thead>
+            <tr>
+                <th style="width: 25%">Vehicle Name</th>
+                <th style="width: 20%">Vehicle Number</th>
+                <th style="width: 40%">Problem Description</th>
+                <th style="width: 15%">Cost (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ enquiry.vehicle_name }}<br><small>{{ enquiry.vehicle_brand }} {{ enquiry.vehicle_model }}</small></td>
+                <td>{{ enquiry.vehicle_no }}</td>
+                <td>{{ enquiry.problem_description }}</td>
+                <td style="text-align: right;">{{ enquiry.cost }}</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="3" style="text-align: right;">Total Amount:</td>
+                <td style="text-align: right;">₹ {{ enquiry.cost }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Thank you for choosing AutoCare AI!</p>
+        <p>This is a computer-generated document. No signature is required.</p>
+    </div>
+</body>
+</html>

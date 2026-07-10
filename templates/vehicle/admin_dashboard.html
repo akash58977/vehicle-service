@@ -1,0 +1,85 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+
+  <!-- Stats Row -->
+  <div class="row">
+    <div class="col-3 col-m-6 col-sm-6">
+      <div class="counter bg-primary">
+        <p><i class="fas fa-users"></i></p>
+        <h3>{{total_customer}}</h3>
+        <p>Total Customers</p>
+      </div>
+    </div>
+    <div class="col-3 col-m-6 col-sm-6">
+      <div class="counter bg-warning">
+        <p><i class="fas fa-hard-hat"></i></p>
+        <h3>{{total_mechanic}}</h3>
+        <p>Total Mechanics</p>
+      </div>
+    </div>
+    <div class="col-3 col-m-6 col-sm-6">
+      <div class="counter bg-success">
+        <p><i class="fas fa-clipboard-list"></i></p>
+        <h3>{{total_request}}</h3>
+        <p>Total Enquiries</p>
+      </div>
+    </div>
+    <div class="col-3 col-m-6 col-sm-6">
+      <div class="counter bg-danger">
+        <p><i class="fas fa-comments"></i></p>
+        <h3>{{total_feedback}}</h3>
+        <p>Total Feedback</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Enquiries Table -->
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 8px;"></i> Recent Customer Enquiries</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Vehicle Name</th>
+                <th>Category</th>
+                <th>Vehicle Model</th>
+                <th>Vehicle Brand</th>
+                <th>Problem Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c,r in data %}
+              <tr>
+                <td><strong>{{ c.get_name }}</strong></td>
+                <td>{{ r.vehicle_name }}</td>
+                <td>{{ r.category }}</td>
+                <td>{{ r.vehicle_model }}</td>
+                <td>{{ r.vehicle_brand }}</td>
+                <td>{{ r.problem_description }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" style="text-align:center; padding:40px; color:var(--text-muted);">
+                  <i class="fas fa-inbox" style="font-size:32px; margin-bottom:10px; display:block;"></i>
+                  No enquiries received yet.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

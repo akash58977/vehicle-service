@@ -1,0 +1,572 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCare AI | Premium Vehicle Service Management</title>
+  <meta name="description" content="Experience intelligent vehicle servicing with AI diagnostics, real-time tracking, certified mechanics and premium customer support.">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+{% include "vehicle/navbar.html" %}
+
+
+<!-- ==========================
+     HERO SECTION
+=========================== -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-container">
+
+    <div class="hero-left reveal">
+      <span class="hero-tag">
+        <i class="fas fa-bolt"></i>
+        AI Powered Vehicle Service
+      </span>
+
+      <h1>
+        Drive Smarter.<br>
+        Service Faster.<br>
+        <span id="typed-text"></span>
+      </h1>
+
+      <p>
+        Experience intelligent vehicle servicing with AI diagnostics,
+        real-time tracking, certified mechanics and premium customer
+        support — all from one platform.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/customersignup" class="btn-primary">
+          <i class="fas fa-calendar-check"></i>
+          Book Service Now
+        </a>
+        <a href="#video-section" class="btn-outline">
+          <i class="fas fa-play-circle"></i>
+          Watch In Action
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <h2 class="counter" data-target="20000">0</h2>
+          <span>Happy Customers</span>
+        </div>
+        <div class="stat">
+          <h2 class="counter" data-target="250">0</h2>
+          <span>Expert Mechanics</span>
+        </div>
+        <div class="stat">
+          <h2 class="counter" data-target="99">0</h2>
+          <span>Success Rate %</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal">
+      <img src="{% static 'images/service-car.png' %}" class="hero-car" alt="Service Car">
+      <div class="floating-box">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <h4>Vehicle Ready</h4>
+          <p>AI Inspection Complete</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==========================
+     TRUSTED BRANDS
+=========================== -->
+<section class="brands">
+  <div class="container">
+    <h5>Trusted By Premium Brands Worldwide</h5>
+    <div class="brand-wrapper">
+      <div>BMW</div>
+      <div>AUDI</div>
+      <div>TESLA</div>
+      <div>MERCEDES</div>
+      <div>TOYOTA</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     WHY CHOOSE US
+=========================== -->
+<section class="why-preview">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>WHY CHOOSE US</span>
+      <h2>Why Choose AutoCare AI?</h2>
+      <p>Premium technology for premium vehicle maintenance. We deliver quality you can trust.</p>
+    </div>
+
+    <div class="preview-grid">
+      <div class="preview-card reveal">
+        <i class="fas fa-microchip"></i>
+        <h3>AI Diagnosis</h3>
+        <p>Smart engine diagnosis powered by artificial intelligence. Pinpoint issues faster than ever.</p>
+      </div>
+      <div class="preview-card reveal">
+        <i class="fas fa-user-shield"></i>
+        <h3>Certified Mechanics</h3>
+        <p>Experienced professionals delivering quality service with guaranteed satisfaction.</p>
+      </div>
+      <div class="preview-card reveal">
+        <i class="fas fa-satellite-dish"></i>
+        <h3>Live Tracking</h3>
+        <p>Monitor every service update in real-time from anywhere on your device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     SERVICES
+=========================== -->
+<section class="services">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>OUR SERVICES</span>
+      <h2>Everything Your Vehicle Needs</h2>
+      <p>We provide complete smart vehicle maintenance solutions powered by AI technology and experienced professionals.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <i class="fas fa-oil-can"></i>
+        <h3>Oil Change</h3>
+        <p>Premium engine oil replacement using genuine products with quick turnaround.</p>
+      </div>
+      <div class="service-card reveal">
+        <i class="fas fa-car-battery"></i>
+        <h3>Battery Check</h3>
+        <p>Smart battery diagnosis and instant replacement service by trained technicians.</p>
+      </div>
+      <div class="service-card reveal">
+        <i class="fas fa-tools"></i>
+        <h3>General Service</h3>
+        <p>Complete inspection with AI generated comprehensive service report.</p>
+      </div>
+      <div class="service-card reveal">
+        <i class="fas fa-car-crash"></i>
+        <h3>Accident Repair</h3>
+        <p>Certified repair specialists with full quality assurance and warranty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     VIDEO SECTION
+=========================== -->
+<section class="video-section" id="video-section">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>IN ACTION</span>
+      <h2>Watch Our Experts In Action</h2>
+      <p>See how our certified mechanics and AI-powered diagnostics deliver premium service results for every vehicle.</p>
+    </div>
+
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb">
+          <iframe
+            src="https://www.youtube.com/embed/r-ZvkEjObAU?rel=0&modestbranding=1"
+            title="Professional Oil Change Service"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-info">
+          <span class="video-badge">Engine Service</span>
+          <h3>Professional Oil Change & Engine Service</h3>
+          <p>Step-by-step expert oil change and engine fluid replacement by certified mechanics.</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 8 min watch</span>
+            <span><i class="fas fa-eye"></i> Expert Level</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb">
+          <iframe
+            src="https://www.youtube.com/embed/7A_XFB4YCBQ?rel=0&modestbranding=1"
+            title="Vehicle Inspection & Diagnostics"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-info">
+          <span class="video-badge">Diagnostics</span>
+          <h3>Full Vehicle Inspection & AI Diagnostics</h3>
+          <p>Watch our full vehicle inspection process using advanced diagnostic tools and AI analysis.</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 12 min watch</span>
+            <span><i class="fas fa-eye"></i> Pro Service</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb">
+          <iframe
+            src="https://www.youtube.com/embed/N7JxP7T-nxE?rel=0&modestbranding=1"
+            title="Brake and Tire Service"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-info">
+          <span class="video-badge">Safety Service</span>
+          <h3>Brake System & Tire Replacement</h3>
+          <p>Complete brake pad replacement and tire service ensuring your vehicle's safety on the road.</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 10 min watch</span>
+            <span><i class="fas fa-eye"></i> Safety Critical</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     PORTALS
+=========================== -->
+<section class="portal-section">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>PORTALS</span>
+      <h2>Select Your Dashboard</h2>
+      <p>Choose your role and access your personalized dashboard to manage your vehicle service experience.</p>
+    </div>
+
+    <div class="portal-grid">
+      <div class="portal-card reveal">
+        <i class="fas fa-user"></i>
+        <h3>Customer</h3>
+        <p>Book services, track repairs in real-time and manage all your invoices from one place.</p>
+        <a href="/customerclick">
+          <i class="fas fa-arrow-right"></i>
+          Get Started
+        </a>
+      </div>
+
+      <div class="portal-card reveal">
+        <i class="fas fa-screwdriver-wrench"></i>
+        <h3>Mechanic</h3>
+        <p>View assigned jobs, update service progress and manage your work schedule efficiently.</p>
+        <a href="/mechanicsclick">
+          <i class="fas fa-arrow-right"></i>
+          Get Started
+        </a>
+      </div>
+
+      <div class="portal-card reveal">
+        <i class="fas fa-user-shield"></i>
+        <h3>Administrator</h3>
+        <p>Manage customers, mechanics, service requests, reports and business analytics.</p>
+        <a href="/adminclick">
+          <i class="fas fa-arrow-right"></i>
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     HOW IT WORKS
+=========================== -->
+<section class="process">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>WORKFLOW</span>
+      <h2>How It Works</h2>
+      <p>Get your vehicle serviced in 4 simple steps with our streamlined process.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="step reveal">
+        <div class="number">1</div>
+        <h3>Book Service</h3>
+        <p>Select your preferred service online in just a few clicks — no waiting in queues.</p>
+      </div>
+      <div class="step reveal">
+        <div class="number">2</div>
+        <h3>AI Inspection</h3>
+        <p>Our AI & certified mechanics perform a full vehicle inspection on arrival.</p>
+      </div>
+      <div class="step reveal">
+        <div class="number">3</div>
+        <h3>Repair & Service</h3>
+        <p>Experienced technicians perform all repairs using genuine quality parts.</p>
+      </div>
+      <div class="step reveal">
+        <div class="number">4</div>
+        <h3>Drive Happy</h3>
+        <p>Collect your vehicle with a detailed digital service report and warranty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     TESTIMONIALS
+=========================== -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-title reveal">
+      <span>TESTIMONIALS</span>
+      <h2>What Our Customers Say</h2>
+      <p>Real reviews from thousands of satisfied vehicle owners who trust AutoCare AI.</p>
+    </div>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>"The AI diagnostics caught an engine issue my previous mechanic missed for months. Absolutely incredible service and very transparent pricing!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <h4>Rahul Sharma</h4>
+            <span>BMW Owner, Mumbai</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>"Real-time tracking is a game changer. I could see exactly what was being done to my car at every step. Zero surprises on the invoice."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div class="author-info">
+            <h4>Priya Mehta</h4>
+            <span>Toyota Owner, Delhi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>"Booked my service in 2 minutes, got my car back the same day in perfect condition. The certified mechanics are absolute professionals!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <h4>Arjun Patel</h4>
+            <span>Mercedes Owner, Bengaluru</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================
+     CTA
+=========================== -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready To Experience The Future Of Vehicle Servicing?</h2>
+    <p>Join over 20,000 satisfied customers who trust AutoCare AI.</p>
+    <a href="/customersignup" class="btn-primary">
+      <i class="fas fa-rocket"></i>
+      Start Now — It's Free
+    </a>
+  </div>
+</section>
+
+
+{% include "vehicle/footer.html" %}
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<script>
+/* ===================================
+   SCROLL PROGRESS BAR
+=================================== */
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('scroll-progress').style.width = scrolled + '%';
+});
+
+/* ===================================
+   PARTICLE CANVAS BACKGROUND
+=================================== */
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 2.5 + 0.5,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4,
+    alpha: Math.random() * 0.6 + 0.2
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0, 212, 255, ${p.alpha})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ===================================
+   TYPED TEXT EFFECT
+=================================== */
+const typedWords = ['AutoCare AI', 'Smart Service', 'Fast Repairs'];
+let wordIndex = 0, charIndex = 0, isDeleting = false;
+const typedEl = document.getElementById('typed-text');
+
+function typeEffect() {
+  const word = typedWords[wordIndex];
+  if (isDeleting) {
+    typedEl.textContent = word.substring(0, charIndex--);
+  } else {
+    typedEl.textContent = word.substring(0, charIndex++);
+  }
+  if (!isDeleting && charIndex === word.length + 1) {
+    isDeleting = true;
+    setTimeout(typeEffect, 1800);
+    return;
+  } else if (isDeleting && charIndex < 0) {
+    isDeleting = false;
+    wordIndex = (wordIndex + 1) % typedWords.length;
+  }
+  setTimeout(typeEffect, isDeleting ? 60 : 100);
+}
+typeEffect();
+
+/* ===================================
+   SCROLL REVEAL
+=================================== */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 80);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ===================================
+   COUNTER ANIMATION
+=================================== */
+function animateCounter(el, target) {
+  let count = 0;
+  const increment = Math.ceil(target / 80);
+  const timer = setInterval(() => {
+    count += increment;
+    if (count >= target) { count = target; clearInterval(timer); }
+    el.textContent = count >= 1000 ? (count / 1000).toFixed(0) + 'K+' : count + (target === 99 ? '%' : '+');
+  }, 20);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.counter').forEach(c => {
+        animateCounter(c, parseInt(c.dataset.target));
+      });
+      counterObserver.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) counterObserver.observe(heroStats);
+
+/* ===================================
+   VIDEO CARD CLICK — REMOVE OVERLAY & AUTOPLAY
+=================================== */
+document.querySelectorAll('.video-card').forEach(card => {
+  card.querySelector('.play-overlay').addEventListener('click', function () {
+    const iframe = card.querySelector('iframe');
+    if (iframe) {
+      let src = iframe.getAttribute('src');
+      if (!src.includes('autoplay=1')) {
+        const separator = src.includes('?') ? '&' : '?';
+        iframe.setAttribute('src', src + separator + 'autoplay=1');
+      }
+    }
+    this.style.display = 'none';
+  });
+});
+</script>
+
+</body>
+</html>

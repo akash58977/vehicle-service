@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Signup | Vehicle Service Management</title>
+    <meta name="description" content="Create your customer account for Vehicle Service Management System">
+    <link rel="icon" href="{% static 'assets/AT-pro-logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            background: #07111f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 30px 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 25% 45%, rgba(14, 165, 233, 0.22) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 75% 25%, rgba(6, 182, 212, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 70% at 55% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .signup-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .signup-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 45px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .brand { text-align: center; margin-bottom: 36px; }
+
+        .brand-icon {
+            width: 68px; height: 68px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px;
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.4);
+        }
+
+        .brand-icon i { font-size: 28px; color: #fff; }
+        .brand h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .brand p { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-grid .full { grid-column: 1 / -1; }
+
+        .form-group { margin-bottom: 0; }
+
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 500;
+            color: rgba(255,255,255,0.6); margin-bottom: 6px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+
+        .input-wrapper { position: relative; }
+
+        .input-wrapper i {
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.3); font-size: 14px; transition: color 0.3s;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 13px 13px 42px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px; color: #fff; font-size: 14px;
+            font-family: 'Outfit', sans-serif; outline: none; transition: all 0.3s;
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px 13px 10px 42px;
+            cursor: pointer;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(14, 165, 233, 0.7);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        .input-wrapper:focus-within i { color: #0ea5e9; }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+        .btn-signup {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            border: none; border-radius: 12px; color: #fff;
+            font-size: 16px; font-weight: 600; font-family: 'Outfit', sans-serif;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.35);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 24px;
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(14, 165, 233, 0.5);
+        }
+
+        .section-divider {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.35);
+            margin: 20px 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-divider::before, .section-divider::after {
+            content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08);
+        }
+
+        .login-link {
+            text-align: center; margin-top: 24px;
+            padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .login-link p { font-size: 13px; color: rgba(255,255,255,0.4); }
+        .login-link a { color: #0ea5e9; text-decoration: none; font-weight: 600; transition: opacity 0.3s; }
+        .login-link a:hover { opacity: 0.8; }
+
+        .messages-container { margin-bottom: 20px; }
+
+        .alert {
+            padding: 12px 16px; border-radius: 10px; font-size: 14px;
+            background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5; display: flex; align-items: center; gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .form-fields { display: flex; flex-direction: column; gap: 14px; }
+    </style>
+</head>
+<body>
+    <div class="signup-wrapper">
+        <div class="signup-card">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Create Account</h1>
+                <p>Join Vehicle Service Management as a Customer</p>
+            </div>
+
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                <div class="alert"><i class="fas fa-exclamation-circle"></i> {{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-fields">
+                    <span class="section-divider">Personal Info</span>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <div class="input-wrapper">
+                                {% render_field userForm.first_name placeholder="First Name" %}
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <div class="input-wrapper">
+                                {% render_field userForm.last_name placeholder="Last Name" %}
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <div class="input-wrapper">
+                                {% render_field userForm.username placeholder="Username" %}
+                                <i class="fas fa-at"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div class="input-wrapper">
+                                {% render_field userForm.password placeholder="Password" %}
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="section-divider">Contact Details</span>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <div class="input-wrapper">
+                            {% render_field customerForm.address placeholder="Your address" %}
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <div class="input-wrapper">
+                            {% render_field customerForm.mobile placeholder="Mobile Number" %}
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+
+                    <span class="section-divider">Profile Photo</span>
+
+                    <div class="form-group">
+                        <label>Profile Picture (optional)</label>
+                        <div class="input-wrapper">
+                            {% render_field customerForm.profile_pic %}
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-signup">
+                    <i class="fas fa-user-check"></i>
+                    Create My Account
+                </button>
+            </form>
+
+            <div class="login-link">
+                <p>Already have an account? <a href="/customerlogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

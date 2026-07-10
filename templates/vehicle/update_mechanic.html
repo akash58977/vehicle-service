@@ -1,0 +1,38 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Update Mechanic Account</h3>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="first_name">First Name</label>
+    {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+
+    <label for="last_name">Last Name</label>
+    {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+
+    <label for="mobile">Mobile</label>
+    {% render_field mechanicForm.mobile class="form-control" placeholder="Mobile Number" %}
+
+    <label for="address">Address</label>
+    {% render_field mechanicForm.address class="form-control" placeholder="Address" %}
+
+    <label for="skill">Skills</label>
+    {% render_field mechanicForm.skill class="form-control" placeholder="Skills" %}
+
+    <label for="username">Username</label>
+    {% render_field userForm.username class="form-control" placeholder="Username" %}
+
+    <label for="password">Password</label>
+    {% render_field userForm.password class="form-control" placeholder="Password" %}
+
+    <label for="profile_pic">Profile Picture</label>
+    {% render_field mechanicForm.profile_pic class="form-control" %}
+
+    <input type="submit" value="Save Mechanic Changes">
+  </form>
+</div>
+
+{% endblock content %}

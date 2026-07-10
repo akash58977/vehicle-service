@@ -1,0 +1,17 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Update Salary & Approve Mechanic</h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="salary">Monthly Salary (₹)</label>
+    {% render_field mechanicSalary.salary class="form-control" placeholder="Enter salary" %}
+
+    <input type="submit" value="Approve Mechanic">
+  </form>
+</div>
+
+{% endblock content %}

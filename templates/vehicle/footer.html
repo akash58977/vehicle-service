@@ -1,0 +1,233 @@
+{% load static %}
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="brand-name">
+          <i class="fas fa-car-side"></i>
+          AutoCare <span style="background:linear-gradient(90deg,#00D4FF,#2563EB);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AI</span>
+        </div>
+        <p>India's most intelligent vehicle service platform. AI-powered diagnostics, certified mechanics, and real-time tracking — all in one place.</p>
+        <div class="social-links">
+          <a href="https://facebook.com/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://api.whatsapp.com/send?phone=919572181024&text=Hello%20AutoCare%20AI!" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://youtube.com/" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="/aboutus"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="/contactus"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="/customersignup"><i class="fas fa-chevron-right"></i> Book Service</a></li>
+          <li><a href="#video-section"><i class="fas fa-chevron-right"></i> Watch Videos</a></li>
+        </ul>
+      </div>
+
+      <!-- Portals -->
+      <div class="footer-col">
+        <h4>Portals</h4>
+        <ul>
+          <li><a href="/customerlogin"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+          <li><a href="/customersignup"><i class="fas fa-chevron-right"></i> Customer Register</a></li>
+          <li><a href="/mechaniclogin"><i class="fas fa-chevron-right"></i> Mechanic Login</a></li>
+          <li><a href="/mechanicsignup"><i class="fas fa-chevron-right"></i> Mechanic Register</a></li>
+          <li><a href="/adminlogin"><i class="fas fa-chevron-right"></i> Admin Login</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>AutoCare AI Headquarters,<br>Tech Park, Bengaluru — 560001, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@autocareai.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon – Sat: 8 AM – 8 PM<br>Sunday: 9 AM – 5 PM</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <p>&copy; 2024 AutoCare AI. Made with <i class="fas fa-heart" style="color:#ef4444;"></i> in India.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="/contactus">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+footer {
+  background: #03070f;
+  padding: 80px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.footer-brand .brand-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.footer-brand .brand-name i { color: #00D4FF; font-size: 26px; }
+
+.footer-brand p {
+  color: #94A3B8;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 300px;
+}
+
+.social-links { display: flex; gap: 12px; }
+
+.social-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-links a:hover {
+  background: linear-gradient(135deg, #2563EB, #00D4FF);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,212,255,0.3);
+}
+
+.footer-col h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 22px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(135deg, #2563EB, #00D4FF);
+  border-radius: 2px;
+}
+
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+
+.footer-col ul li a {
+  color: #94A3B8;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-col ul li a i { font-size: 11px; color: #00D4FF; }
+.footer-col ul li a:hover { color: #00D4FF; }
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-contact-item i {
+  color: #00D4FF;
+  font-size: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.footer-contact-item span {
+  color: #94A3B8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 22px 0;
+}
+
+.footer-bottom p {
+  color: #64748B;
+  font-size: 13px;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-bottom-links a {
+  color: #64748B;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover { color: #00D4FF; }
+
+@media (max-width: 1100px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom .container { flex-direction: column; text-align: center; }
+}
+</style>

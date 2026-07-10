@@ -1,0 +1,57 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+<div class="wrapper">
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-user-plus"></i> Pending Mechanic Approvals</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Mechanic Name</th>
+                <th>Profile Picture</th>
+                <th>Mobile Number</th>
+                <th>Address</th>
+                <th>Skills</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in mechanics %}
+              <tr>
+                <td>{{ m.get_name }}</td>
+                <td>
+                  <img src="{% if m.profile_pic %}{{ m.profile_pic.url }}{% else %}{% static 'images/mechanic.png' %}{% endif %}" alt="Profile Pic" height="40px" width="40px" style="border-radius: 50%; object-fit: cover;" />
+                </td>
+                <td>{{ m.mobile }}</td>
+                <td>{{ m.address }}</td>
+                <td>{{ m.skill }}</td>
+                <td style="text-align: center;">
+                  <a class="btn btn-primary" href="{% url 'approve-mechanic' m.id %}" style="padding: 6px 12px; font-size: 13px; margin-right: 5px;">
+                    <i class="fas fa-check"></i> Approve
+                  </a>
+                  <a class="btn btn-danger" href="{% url 'delete-mechanic' m.id %}" style="padding: 6px 12px; font-size: 13px;">
+                    <i class="fas fa-trash-alt"></i> Reject
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" style="text-align:center; padding:40px; color:var(--text-muted);">
+                  <i class="fas fa-check-double" style="font-size:32px; margin-bottom:10px; display:block; color: var(--success-color);"></i>
+                  No pending mechanic registration requests.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

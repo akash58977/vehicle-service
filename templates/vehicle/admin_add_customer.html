@@ -1,0 +1,84 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="wrapper">
+
+  <div class="page-header">
+    <h2><i class="fas fa-user-plus"></i> Create Customer Account</h2>
+    <p>Add a new customer to the system</p>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-id-card"></i> Customer Details</h3>
+        </div>
+        <div class="card-content">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label>First Name</label>
+              {% render_field userForm.first_name class="form-control" placeholder="Enter first name" %}
+            </div>
+
+            <div class="form-group">
+              <label>Last Name</label>
+              {% render_field userForm.last_name class="form-control" placeholder="Enter last name" %}
+            </div>
+
+            <div class="form-group">
+              <label>Mobile</label>
+              {% render_field customerForm.mobile class="form-control" placeholder="Mobile number" %}
+            </div>
+
+            <div class="form-group">
+              <label>Address</label>
+              {% render_field customerForm.address class="form-control" placeholder="Full address" %}
+            </div>
+
+            <div class="form-group">
+              <label>Username</label>
+              {% render_field userForm.username class="form-control" placeholder="Login username" %}
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              {% render_field userForm.password class="form-control" placeholder="Password" %}
+            </div>
+
+            <div class="form-group">
+              <label>Profile Picture</label>
+              {% render_field customerForm.profile_pic class="form-control" %}
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              <i class="fas fa-user-check"></i> Create Customer Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .page-header { margin-bottom: 30px; }
+  .page-header h2 { font-size: 24px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .page-header h2 i { color: var(--primary-color); }
+  .page-header p { color: var(--text-muted); font-size: 14px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-control { width: 100%; padding: 11px 14px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 14px; outline: none; transition: all 0.3s; font-family: inherit; }
+  .form-control:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+
+  .btn { padding: 13px 20px; border-radius: 10px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; font-family: inherit; }
+  .btn-primary { background: linear-gradient(135deg, var(--primary-color), #8b5cf6); color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99,102,241,0.3); }
+</style>
+
+{% endblock content %}

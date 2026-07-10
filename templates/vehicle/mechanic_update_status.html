@@ -1,0 +1,17 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Update Work Status</h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="status">Work Progress Status</label>
+    {% render_field updateStatus.status class="form-control" %}
+
+    <input type="submit" value="Update Status">
+  </form>
+</div>
+
+{% endblock content %}

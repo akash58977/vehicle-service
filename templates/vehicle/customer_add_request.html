@@ -1,0 +1,32 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Make a Service Request</h3>
+  <form method="post">
+    {% csrf_token %}
+    
+    <label for="category">Vehicle Category</label>
+    {% render_field enquiry.category class="form-control" %}
+
+    <label for="vehicle_no">Vehicle Number</label>
+    {% render_field enquiry.vehicle_no class="form-control" placeholder="e.g. 1234" %}
+
+    <label for="vehicle_name">Vehicle Name</label>
+    {% render_field enquiry.vehicle_name class="form-control" placeholder="e.g. Splendor, Civic" %}
+
+    <label for="vehicle_brand">Vehicle Brand</label>
+    {% render_field enquiry.vehicle_brand class="form-control" placeholder="e.g. Honda, Suzuki" %}
+
+    <label for="vehicle_model">Vehicle Model</label>
+    {% render_field enquiry.vehicle_model class="form-control" placeholder="e.g. 2024" %}
+
+    <label for="problem_description">Problem Description</label>
+    {% render_field enquiry.problem_description class="form-control" placeholder="Describe the issue with your vehicle..." %}
+
+    <input type="submit" value="Submit Request">
+  </form>
+</div>
+
+{% endblock content %}

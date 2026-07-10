@@ -1,0 +1,48 @@
+{% extends 'vehicle/adminbase.html' %}
+
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+
+<div class="form-container xyz">
+  <form method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Take Attendance</h3>
+      </div>
+      <div class="card-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Mechanic Name</th>
+              <th>Present/Absent</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in mechanics %}
+            <tr>
+              <td>{{m.get_name}}</td>
+              <td>{{aform.present_status}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <label for="date">Date</label>
+      {% render_field aform.date class="form-control" type="date" placeholder="Enter Date" %}
+      <input type="submit" value="Submit Attendance">
+    </div>
+  </form>
+</div>
+
+<!--
+written By : sumit kumar
+facebook : fb.com/sumit.luv
+-->
+
+
+{% endblock content %}

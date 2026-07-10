@@ -1,0 +1,23 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Approve Request & Assign Mechanic</h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="mechanic">Assign Mechanic</label>
+    {% render_field adminenquiry.mechanic class="form-control" %}
+
+    <label for="cost">Repair Cost (₹)</label>
+    {% render_field adminenquiry.cost class="form-control" placeholder="Enter service cost" %}
+
+    <label for="status">Status</label>
+    {% render_field adminenquiry.status class="form-control" %}
+
+    <input type="submit" value="Approve & Save Request">
+  </form>
+</div>
+
+{% endblock content %}

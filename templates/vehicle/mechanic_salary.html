@@ -1,0 +1,49 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% block content %}
+{% load static %}
+<div class="wrapper">
+  <div class="page-header" style="margin-bottom: 30px; text-align: center;">
+    <h2 style="font-size: 28px; font-weight: 700; color: var(--text-color); margin-bottom: 6px;">
+      <i class="fas fa-wallet" style="color: var(--primary-color);"></i> Monthly Salary: ₹{{ mechanic.salary|default:"0" }}
+    </h2>
+    <p style="color: var(--text-muted); font-size: 15px;">Salary packages are managed by administrator</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-history"></i> Repaired Vehicles History</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Vehicle Name</th>
+                <th>Vehicle Number</th>
+                <th>Problem Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for w in workdone %}
+              <tr>
+                <td>{{ w.vehicle_name }}</td>
+                <td>{{ w.vehicle_no }}</td>
+                <td>{{ w.problem_description }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="3" style="text-align:center; padding:40px; color:var(--text-muted);">
+                  <i class="fas fa-inbox" style="font-size:32px; margin-bottom:10px; display:block;"></i>
+                  No repaired vehicles history yet.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

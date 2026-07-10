@@ -1,0 +1,17 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3><i class="fas fa-calendar-check" style="color: var(--primary-color); margin-right: 8px;"></i> Check Attendance by Date</h3>
+  <form method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <label for="date">Select Date</label>
+    {% render_field form.date class="form-control" placeholder="YYYY-MM-DD" %}
+
+    <input type="submit" value="View Attendance">
+  </form>
+</div>
+
+{% endblock content %}

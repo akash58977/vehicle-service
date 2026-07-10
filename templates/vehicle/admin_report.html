@@ -1,0 +1,61 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+
+<div class="wrapper">
+
+  <div class="page-header">
+    <h2><i class="fas fa-chart-bar"></i> Revenue Report</h2>
+    <p>Financial summary of all completed vehicle services</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-file-invoice-dollar"></i> Service Cost Records</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Vehicle Name</th>
+                <th>Vehicle Number</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in reports %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.vehicle_name }}</td>
+                <td>{{ r.vehicle_no }}</td>
+                <td>{{ r.date }}</td>
+                <td><span class="badge badge-success">₹{{ r.cost }}</span></td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5" style="text-align:center; padding:40px; color:var(--text-muted);">
+                  <i class="fas fa-inbox" style="font-size:32px; margin-bottom:10px; display:block;"></i>
+                  No report data available yet.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .page-header { margin-bottom: 30px; }
+  .page-header h2 { font-size: 24px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .page-header h2 i { color: var(--primary-color); }
+  .page-header p { color: var(--text-muted); font-size: 14px; }
+</style>
+
+{% endblock content %}

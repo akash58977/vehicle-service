@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Login | AutoCare AI</title>
+    <meta name="description" content="Mechanic portal login for Vehicle Service Management System">
+    <link rel="icon" href="{% static 'assets/AT-pro-logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            background: #0f0a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 40%, rgba(245, 158, 11, 0.2) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(239, 68, 68, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 70% at 60% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
+            animation: bgFloat 10s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes bgFloat {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.04) rotate(1.5deg); }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .login-wrapper {
+            position: relative; z-index: 10;
+            width: 100%; max-width: 480px; padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 45px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .brand { text-align: center; margin-bottom: 36px; }
+
+        .brand-icon {
+            width: 68px; height: 68px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px;
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+        }
+
+        .brand-icon i { font-size: 28px; color: #fff; }
+        .brand h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .brand p { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 600;
+            color: rgba(255,255,255,0.6); margin-bottom: 8px;
+            letter-spacing: 0.8px; text-transform: uppercase;
+        }
+
+        .input-wrapper { position: relative; }
+
+        .input-wrapper .input-icon {
+            position: absolute; left: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.3); font-size: 15px; transition: color 0.3s;
+            pointer-events: none;
+        }
+
+        .input-wrapper:focus-within .input-icon { color: #f59e0b; }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 46px 14px 46px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 13px; color: #fff; font-size: 15px;
+            font-family: 'Outfit', sans-serif; outline: none; transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+        }
+
+        .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+        .eye-toggle {
+            position: absolute; right: 14px; top: 50%;
+            transform: translateY(-50%);
+            background: none; border: none; cursor: pointer;
+            color: rgba(255,255,255,0.3); font-size: 15px;
+            transition: color 0.3s; padding: 0;
+        }
+
+        .eye-toggle:hover { color: #f59e0b; }
+
+        .forgot-link {
+            display: block; text-align: right;
+            margin-top: -12px; margin-bottom: 20px;
+            font-size: 13px; color: rgba(255,255,255,0.45);
+            text-decoration: none; transition: color 0.3s;
+        }
+
+        .forgot-link:hover { color: #f59e0b; }
+
+        .shake { animation: shake 0.4s ease; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-6px); }
+            80% { transform: translateX(6px); }
+        }
+
+        .btn-login {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            border: none; border-radius: 12px; color: #fff;
+            font-size: 16px; font-weight: 600; font-family: 'Outfit', sans-serif;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
+            letter-spacing: 0.5px; margin-top: 8px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.5);
+        }
+
+        .btn-login:active { transform: translateY(0); }
+
+        .divider {
+            display: flex; align-items: center; gap: 12px; margin: 24px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+        }
+
+        .divider span { font-size: 12px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; }
+
+        .login-links { text-align: center; margin-top: 16px; }
+
+        .login-links a {
+            color: rgba(255,255,255,0.5); text-decoration: none;
+            font-size: 13px; transition: color 0.3s;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+
+        .login-links a:hover { color: #f59e0b; }
+
+        .role-tabs {
+            display: flex; gap: 8px; margin-bottom: 32px;
+            background: rgba(255,255,255,0.05); padding: 4px; border-radius: 10px;
+        }
+
+        .role-tab {
+            flex: 1; text-align: center; padding: 8px; border-radius: 8px;
+            font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4);
+            text-decoration: none; transition: all 0.3s;
+        }
+
+        .role-tab.active {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: #fff; box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+        }
+
+        .role-tab:hover:not(.active) { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+
+        .messages-container { margin-bottom: 20px; }
+
+        .alert {
+            padding: 12px 16px; border-radius: 10px; font-size: 14px;
+            background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5; display: flex; align-items: center; gap: 10px;
+        }
+
+        .signup-link {
+            text-align: center; margin-top: 20px;
+            padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .signup-link p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+        .signup-link a { color: #f59e0b; text-decoration: none; font-weight: 600; transition: opacity 0.3s; }
+        .signup-link a:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card" id="login-card">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fas fa-wrench"></i>
+                </div>
+                <h1>Mechanic Login</h1>
+                <p>Vehicle Service Management System</p>
+            </div>
+
+            <div class="role-tabs">
+                <a href="/adminlogin" class="role-tab"><i class="fas fa-user-shield"></i> Admin</a>
+                <a href="/customerlogin" class="role-tab"><i class="fas fa-user"></i> Customer</a>
+                <a href="/mechaniclogin" class="role-tab active"><i class="fas fa-wrench"></i> Mechanic</a>
+            </div>
+
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                <div class="alert"><i class="fas fa-exclamation-circle"></i> {{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        {% render_field form.username placeholder="Enter your username" %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        {% render_field form.password placeholder="Enter your password" id="password-field" %}
+                        <button type="button" class="eye-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="eye-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="/forgot-password" class="forgot-link">
+                    <i class="fas fa-key" style="font-size:11px;"></i> Forgot Password?
+                </a>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Dashboard
+                </button>
+            </form>
+
+            <div class="signup-link">
+                <p>New mechanic? <a href="/mechanicsignup">Register here</a></p>
+            </div>
+
+            <div class="divider"><span>Or</span></div>
+
+            <div class="login-links">
+                <a href="/"><i class="fas fa-home"></i> Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+  <script>
+    function togglePassword() {
+      const field = document.getElementById('password-field');
+      const icon = document.getElementById('eye-icon');
+      if (field.type === 'password') {
+        field.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+      } else {
+        field.type = 'password';
+        icon.className = 'fas fa-eye';
+      }
+    }
+    {% if messages %}
+    document.getElementById('login-card').classList.add('shake');
+    {% endif %}
+  </script>
+</body>
+</html>

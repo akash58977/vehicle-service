@@ -1,0 +1,168 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+
+  <a class="navbar-brand" href="/">
+    <i class="fas fa-car-side"></i>
+    AutoCare <span>AI</span>
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="hamburger-icon">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto align-items-center">
+      <li class="nav-item">
+        <a href="/" class="nav-link"><i class="fas fa-house mr-1"></i> Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="/customerclick" class="nav-link"><i class="fas fa-user mr-1"></i> Customer</a>
+      </li>
+      <li class="nav-item">
+        <a href="/mechanicsclick" class="nav-link"><i class="fas fa-screwdriver-wrench mr-1"></i> Mechanic</a>
+      </li>
+      <li class="nav-item">
+        <a href="/adminclick" class="nav-link"><i class="fas fa-user-shield mr-1"></i> Admin</a>
+      </li>
+      <li class="nav-item">
+        <a href="/aboutus" class="nav-link"><i class="fas fa-circle-info mr-1"></i> About</a>
+      </li>
+      <li class="nav-item">
+        <a href="/contactus" class="nav-link"><i class="fas fa-envelope mr-1"></i> Contact</a>
+      </li>
+      <li class="nav-item ml-3">
+        <a href="/customersignup" class="nav-cta">
+          <i class="fas fa-calendar-check"></i> Book Now
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  * { font-family: 'Poppins', sans-serif; }
+
+  body { padding-top: 80px; }
+
+  #mainNav {
+    background: rgba(2, 8, 23, 0.85) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: none;
+    padding: 14px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.4s ease;
+  }
+
+  #mainNav.scrolled {
+    background: rgba(2, 8, 23, 0.97) !important;
+    padding: 10px 48px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0,212,255,0.08);
+  }
+
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff !important;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar-brand i {
+    color: #00D4FF;
+    font-size: 26px;
+  }
+
+  .navbar-brand span {
+    background: linear-gradient(90deg, #00D4FF, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .navbar-nav .nav-item { margin-left: 4px; }
+
+  .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.75) !important;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px !important;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #00D4FF !important;
+    background: rgba(0,212,255,0.06);
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #2563EB, #00D4FF);
+    border-radius: 50px;
+    color: white !important;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 6px 20px rgba(0,198,255,0.3);
+    letter-spacing: 0.3px;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,198,255,0.5);
+    color: white !important;
+  }
+
+  /* Hamburger custom */
+  .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .hamburger-icon span {
+    display: block;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .navbar-toggler { border: none; outline: none !important; box-shadow: none !important; padding: 6px; }
+
+  @media (max-width: 991px) {
+    #mainNav { padding: 12px 20px; }
+    #mainNav.scrolled { padding: 10px 20px; }
+    .navbar-collapse {
+      background: rgba(2, 8, 23, 0.97);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      margin-top: 12px;
+      padding: 16px;
+    }
+    .navbar-nav .nav-item { margin-left: 0; }
+    .navbar-nav .nav-link { padding: 10px 14px !important; }
+    .nav-cta { margin: 10px 14px 4px; }
+    #mainNav .ml-3 { margin-left: 0 !important; }
+  }
+</style>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>

@@ -1,0 +1,52 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+
+  <div style="margin-bottom: 30px;">
+    <h2 style="font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 12px;">
+      <i class="fas fa-calendar-week" style="color: var(--primary-color);"></i> Mechanic Attendance
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin-top: 6px;">Take attendance or view historical records</p>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-m-12 col-sm-12">
+      <a href="/admin-view-attendance" style="text-decoration: none; display: block; margin-bottom: 24px;">
+        <div class="card" style="cursor: pointer; transition: all 0.3s; border-left: 4px solid var(--primary-color);">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--primary-color), #00d4ff); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fas fa-eye" style="font-size: 22px; color: #fff;"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 4px;">View Attendance Records</h3>
+              <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Check historical attendance by date</p>
+            </div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted); margin-left: auto; font-size: 14px;"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-6 col-m-12 col-sm-12">
+      <a href="/admin-take-attendance" style="text-decoration: none; display: block; margin-bottom: 24px;">
+        <div class="card" style="cursor: pointer; transition: all 0.3s; border-left: 4px solid var(--success-color);">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fas fa-plus-circle" style="font-size: 22px; color: #fff;"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 4px;">Take Today's Attendance</h3>
+              <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Mark present / absent for all mechanics</p>
+            </div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted); margin-left: auto; font-size: 14px;"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+<div class="wrapper">
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-users"></i> Registered Customers</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Profile Picture</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c in customers %}
+              <tr>
+                <td>{{ c.get_name }}</td>
+                <td>
+                  <img src="{% if c.profile_pic %}{{ c.profile_pic.url }}{% else %}{% static 'images/admin.png' %}{% endif %}" alt="Profile Pic" height="40px" width="40px" style="border-radius: 50%; object-fit: cover;" />
+                </td>
+                <td>{{ c.mobile }}</td>
+                <td>{{ c.address }}</td>
+                <td style="text-align: center;">
+                  <a class="btn btn-primary" href="{% url 'update-customer' c.id %}" style="padding: 6px 12px; font-size: 13px; margin-right: 5px;">
+                    <i class="fas fa-edit"></i> Edit
+                  </a>
+                  <a class="btn btn-danger" href="{% url 'delete-customer' c.id %}" style="padding: 6px 12px; font-size: 13px;">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

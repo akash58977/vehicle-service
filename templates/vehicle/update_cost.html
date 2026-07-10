@@ -1,0 +1,17 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Update Service Cost</h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="cost">Repair Cost (₹)</label>
+    {% render_field updateCostForm.cost class="form-control" placeholder="Enter new cost" %}
+
+    <input type="submit" value="Update Cost">
+  </form>
+</div>
+
+{% endblock content %}

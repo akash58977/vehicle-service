@@ -1,0 +1,75 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+<div class="wrapper">
+  <div class="page-header" style="margin-bottom: 30px;">
+    <h2 style="font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+      <i class="fas fa-list-alt" style="color: var(--primary-color);"></i> All Service Requests
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px;">Manage all customer service enquiries</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-tools"></i> Service Enquiries</h3>
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Problem</th>
+                <th>Status</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c,r in data %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><strong>{{ c.get_name }}</strong></td>
+                <td>{{ r.vehicle_name }}</td>
+                <td>{{ r.category }}</td>
+                <td>{{ r.problem_description }}</td>
+                <td>
+                  {% if r.status == "Pending" %}
+                    <span class="status-badge status-pending">{{ r.status }}</span>
+                  {% elif r.status == "Approved" %}
+                    <span class="status-badge status-approved">{{ r.status }}</span>
+                  {% elif r.status == "Repairing" %}
+                    <span class="status-badge status-repairing">{{ r.status }}</span>
+                  {% elif r.status == "Repairing Done" %}
+                    <span class="status-badge status-done">{{ r.status }}</span>
+                  {% else %}
+                    <span class="status-badge status-released">{{ r.status }}</span>
+                  {% endif %}
+                </td>
+                <td style="text-align: center;">
+                  <a class="btn btn-primary" href="{% url 'change-status' r.id %}" style="padding: 6px 12px; font-size: 13px; margin-right: 5px;">
+                    <i class="fas fa-exchange-alt"></i> Status
+                  </a>
+                  <a class="btn btn-danger" href="{% url 'admin-delete-request' r.id %}" style="padding: 6px 12px; font-size: 13px;" onclick="return confirm('Delete this request?')">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="7" style="text-align:center; padding:40px; color:var(--text-muted);">
+                  <i class="fas fa-inbox" style="font-size:32px; margin-bottom:10px; display:block;"></i>
+                  No service requests yet.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

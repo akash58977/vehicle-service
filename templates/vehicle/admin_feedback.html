@@ -1,0 +1,164 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+
+  <div class="page-header">
+    <h2><i class="fas fa-comments"></i> Customer & Mechanic Feedback</h2>
+    <p>All feedback messages submitted through the system</p>
+  </div>
+
+  {% if feedback %}
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      {% for f in feedback %}
+      <div class="feedback-card" id="feedback-{{ forloop.counter }}">
+        <div class="feedback-header">
+          <div class="feedback-meta">
+            <div class="feedback-avatar">
+              <i class="fas fa-comment-alt"></i>
+            </div>
+            <div>
+              <span class="feedback-by">{{ f.by }}</span>
+              <span class="feedback-date"><i class="fas fa-calendar-alt"></i> {{ f.date }}</span>
+            </div>
+          </div>
+          <button class="feedback-close" onclick="document.getElementById('feedback-{{ forloop.counter }}').style.display='none'">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="feedback-body">
+          <p>{{ f.message }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">
+      <i class="fas fa-comments"></i>
+    </div>
+    <h3>No Feedback Yet</h3>
+    <p>Feedback submitted by customers and mechanics will appear here.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+<style>
+  .page-header { margin-bottom: 30px; }
+  .page-header h2 { font-size: 24px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .page-header h2 i { color: var(--primary-color); }
+  .page-header p { color: var(--text-muted); font-size: 14px; }
+
+  .feedback-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+    animation: slideIn 0.4s ease both;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .feedback-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);
+  }
+
+  .feedback-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .feedback-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .feedback-avatar {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feedback-avatar i { font-size: 16px; color: #fff; }
+
+  .feedback-by {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 2px;
+  }
+
+  .feedback-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .feedback-close {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 13px;
+  }
+
+  .feedback-close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+  }
+
+  .feedback-body p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+    padding: 14px 16px;
+    background: var(--bg-color);
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-color);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .empty-icon {
+    width: 80px; height: 80px;
+    border-radius: 24px;
+    background: rgba(99, 102, 241, 0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+  }
+
+  .empty-icon i { font-size: 32px; color: var(--primary-color); }
+  .empty-state h3 { font-size: 20px; font-weight: 600; color: var(--text-color); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; color: var(--text-muted); }
+</style>
+
+{% endblock content %}

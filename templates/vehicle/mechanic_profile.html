@@ -1,0 +1,23 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="form-container xyz" style="text-align: center;">
+  <h3>Mechanic Profile</h3>
+  
+  {% if mechanic.profile_pic %}
+  <img style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 25px; display: block; object-fit: cover; border: 3px solid var(--primary-color);" src="{{ mechanic.profile_pic.url }}" alt="Profile Pic">
+  {% else %}
+  <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--bg-color); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 48px; margin: 0 auto 25px; border: 2px dashed var(--border-color);"><i class="fas fa-user"></i></div>
+  {% endif %}
+
+  <div class="card" style="text-align: left; padding: 20px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 25px;">
+    <p style="font-size: 16px; margin-bottom: 12px; color: var(--text-secondary);"><strong>Name:</strong> {{mechanic.get_name}}</p>
+    <p style="font-size: 16px; margin-bottom: 12px; color: var(--text-secondary);"><strong>Mobile:</strong> {{mechanic.mobile}}</p>
+    <p style="font-size: 16px; margin-bottom: 12px; color: var(--text-secondary);"><strong>Skill:</strong> {{mechanic.skill}}</p>
+    <p style="font-size: 16px; color: var(--text-secondary);"><strong>Address:</strong> {{mechanic.address}}</p>
+  </div>
+
+  <a href="/edit-mechanic-profile" class="btn btn-primary" style="padding: 12px 30px; font-size: 15px; border-radius: 8px;">Edit Profile</a>
+</div>
+{% endblock content %}

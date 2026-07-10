@@ -1,0 +1,385 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+/* ── Customer Dashboard Styles ── */
+.dash-wrap { padding: 28px 30px; }
+
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #4f46e5 100%);
+  border-radius: 20px;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  box-shadow: 0 20px 50px rgba(37,99,235,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.welcome-text h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff !important;
+  margin-bottom: 8px;
+}
+
+.welcome-text p {
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 15px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.welcome-banner img {
+  width: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
+  flex-shrink: 0;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 26px 24px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.09);
+}
+
+.stat-icon {
+  width: 58px; height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.stat-icon.blue   { background: linear-gradient(135deg, #3b82f6, #1d4ed8); box-shadow: 0 6px 18px rgba(37,99,235,0.35); }
+.stat-icon.orange { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 6px 18px rgba(234,88,12,0.35); }
+.stat-icon.green  { background: linear-gradient(135deg, #22c55e, #15803d); box-shadow: 0 6px 18px rgba(21,128,61,0.35); }
+.stat-icon.red    { background: linear-gradient(135deg, #f43f5e, #be123c); box-shadow: 0 6px 18px rgba(190,18,60,0.35); }
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1e3a8a;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title i { color: #2563eb; font-size: 17px; }
+
+/* Quick Actions */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.action-tile {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.action-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+
+.action-icon {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+}
+
+.action-icon.a1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.action-icon.a2 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.action-icon.a3 { background: linear-gradient(135deg, #10b981, #047857); }
+.action-icon.a4 { background: linear-gradient(135deg, #f43f5e, #be123c); }
+
+.action-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+/* Overview Panel */
+.overview-panel {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  margin-bottom: 28px;
+}
+
+.progress-item { margin-bottom: 22px; }
+.progress-item:last-child { margin-bottom: 0; }
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.progress-count {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e3a8a;
+  background: #eff6ff;
+  padding: 3px 12px;
+  border-radius: 50px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 1s ease;
+}
+
+.fill-blue   { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
+.fill-orange { background: linear-gradient(90deg, #f97316, #ea580c); }
+.fill-green  { background: linear-gradient(90deg, #22c55e, #15803d); }
+
+/* Brands Marquee */
+.brands-panel {
+  background: #fff;
+  border-radius: 18px;
+  padding: 26px 30px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  margin-bottom: 28px;
+}
+
+.brands-panel img {
+  opacity: 0.65;
+  transition: opacity 0.3s;
+  margin: 0 18px;
+  object-fit: contain;
+}
+
+.brands-panel img:hover { opacity: 1; }
+
+/* Dashboard Footer */
+.dash-footer {
+  text-align: center;
+  padding: 24px;
+  color: #6b7280;
+}
+
+.dash-footer h5 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.dash-footer p {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .welcome-banner { flex-direction: column; text-align: center; gap: 20px; }
+  .welcome-banner img { width: 140px; }
+  .dash-wrap { padding: 16px; }
+}
+</style>
+
+<div class="dash-wrap">
+
+  <!-- Welcome Banner -->
+  <div class="welcome-banner">
+    <div class="welcome-text">
+      <h2>Welcome, {{ customer.get_name }} 👋</h2>
+      <p>Manage all your vehicle service requests from one place. Track repairs, view invoices and monitor progress in real-time.</p>
+    </div>
+    <img src="{% static 'images/car.png' %}" alt="Car">
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue"><i class="fas fa-plus-circle"></i></div>
+      <div class="stat-value">{{ new_request_made }}</div>
+      <div class="stat-label">New Requests</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon orange"><i class="fas fa-tools"></i></div>
+      <div class="stat-value">{{ work_in_progress }}</div>
+      <div class="stat-label">Vehicles Under Repair</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+      <div class="stat-value">{{ work_completed }}</div>
+      <div class="stat-label">Completed Services</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon red"><i class="fas fa-indian-rupee-sign"></i></div>
+      <div class="stat-value">₹{{ bill|default:"0" }}</div>
+      <div class="stat-label">Total Service Cost</div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="section-title">
+    <i class="fas fa-bolt"></i> Quick Actions
+  </div>
+  <div class="actions-grid">
+    <a href="/customer-add-request" class="action-tile">
+      <div class="action-icon a1"><i class="fas fa-plus"></i></div>
+      <div class="action-label">New Service Request</div>
+    </a>
+    <a href="/customer-view-request" class="action-tile">
+      <div class="action-icon a2"><i class="fas fa-list-check"></i></div>
+      <div class="action-label">View My Requests</div>
+    </a>
+    <a href="/customer-invoice" class="action-tile">
+      <div class="action-icon a3"><i class="fas fa-file-invoice-dollar"></i></div>
+      <div class="action-label">Invoices</div>
+    </a>
+    <a href="/customer-feedback" class="action-tile">
+      <div class="action-icon a4"><i class="fas fa-comment-dots"></i></div>
+      <div class="action-label">Send Feedback</div>
+    </a>
+  </div>
+
+  <!-- Service Overview -->
+  <div class="section-title">
+    <i class="fas fa-chart-line"></i> Service Overview
+  </div>
+  <div class="overview-panel">
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">New Requests</span>
+        <span class="progress-count">{{ new_request_made }}</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill fill-blue" style="width: 85%;"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Repair In Progress</span>
+        <span class="progress-count">{{ work_in_progress }}</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill fill-orange" style="width: 60%;"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Completed Repairs</span>
+        <span class="progress-count">{{ work_completed }}</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill fill-green" style="width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supported Brands -->
+  <div class="section-title">
+    <i class="fas fa-car"></i> Supported Vehicle Brands
+  </div>
+  <div class="brands-panel">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      <img src="{% static 'images/ferrari.png' %}" width="90" height="55" alt="Ferrari">
+      <img src="{% static 'images/ford.png' %}" width="90" height="55" alt="Ford">
+      <img src="{% static 'images/lambo.png' %}" width="90" height="55" alt="Lamborghini">
+      <img src="{% static 'images/mahindra.png' %}" width="90" height="55" alt="Mahindra">
+      <img src="{% static 'images/tata.png' %}" width="90" height="55" alt="Tata">
+      <img src="{% static 'images/tvs.png' %}" width="90" height="55" alt="TVS">
+      <img src="{% static 'images/hero.png' %}" width="90" height="55" alt="Hero">
+      <img src="{% static 'images/suzuki.png' %}" width="90" height="55" alt="Suzuki">
+      <img src="{% static 'images/rolls.png' %}" width="90" height="55" alt="Rolls Royce">
+    </marquee>
+  </div>
+
+  <!-- Footer -->
+  <div class="dash-footer">
+    <h5>AutoCare AI</h5>
+    <p>Track requests &bull; Monitor repairs &bull; Download invoices &bull; Manage your vehicles</p>
+  </div>
+
+</div>
+{% endblock content %}

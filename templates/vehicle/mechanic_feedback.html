@@ -1,0 +1,20 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="form-container">
+  <h3>Send Feedback to Admin</h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="by">Your Name</label>
+    {% render_field feedback.by class="form-control" placeholder="Your Name" %}
+
+    <label for="message">Message</label>
+    {% render_field feedback.message class="form-control" placeholder="Write your feedback message here..." %}
+
+    <input type="submit" value="Send Feedback">
+  </form>
+</div>
+
+{% endblock content %}
