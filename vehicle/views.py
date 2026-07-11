@@ -81,19 +81,36 @@ def is_customer(user):
 def is_mechanic(user):
     return user.groups.filter(name='MECHANIC').exists()
 
-
 def afterlogin_view(request):
-    if is_customer(request.user):
+
+    if models.Customer.objects.filter(user=request.user).exists():
+        customer_group, created = Group.objects.get_or_create(name='CUSTOMER')
+        request.user.groups.add(customer_group)
         return redirect('customer-dashboard')
-    elif is_mechanic(request.user):
-        accountapproval=models.Mechanic.objects.all().filter(user_id=request.user.id,status=True)
+
+    elif models.Mechanic.objects.filter(user=request.user).exists():
+        mechanic_group, created = Group.objects.get_or_create(name='MECHANIC')
+        request.user.groups.add(mechanic_group)
+
+        accountapproval = models.Mechanic.objects.filter(
+            user=request.user,
+            status=True
+        ).exists()
+
         if accountapproval:
             return redirect('mechanic-dashboard')
         else:
-            return render(request,'vehicle/mechanic_wait_for_approval.html')
-    else:
+            return render(
+                request,
+                'vehicle/mechanic_wait_for_approval.html'
+            )
+
+    elif request.user.is_staff or request.user.is_superuser:
         return redirect('admin-dashboard')
 
+    else:
+        django_logout(request)
+        return redirect('/')
 def logout_view(request):
     django_logout(request)
     return redirect('/')
